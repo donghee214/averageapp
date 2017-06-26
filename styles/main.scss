@@ -1,3 +1,350 @@
-body {
-	background: #ece7e7;
+$background: #fefefe;
+$text: #4b507a;
+$cyan: #60daaa;
+$yellow: #fbca67;
+$orange: #ff8a30;
+$red: #f45e61;
+$purple: #6477b9;
+$blue: #0eb7da;
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+.content {
+    position: relative;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 35px;
+    line-height: 40px;
+    font-family: 'Lato', sans-serif;
+    color: #ecf0f1;
+    overflow: visible;
+    display: inline-flex;
+    margin-top: 15%;
+    margin-bottom: 2%;
+}
+
+.visible {
+    font-weight: 600;
+    overflow: hidden;
+    height: 40px;
+    padding: 0 40px;
+    &:before {
+        content: '[';
+        left: 0;
+        line-height: 40px;
+    }
+    &:after {
+        content: ']';
+        position: absolute;
+        right: 0;
+        line-height: 40px;
+    }
+    &:after,
+    &:before {
+        position: absolute;
+        top: 0;
+        color: #16a085;
+        font-size: 42px;
+        -webkit-animation-name: opacity;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: 4.3;
+        animation-name: opacity;
+        animation-duration: 2s;
+        animation-iteration-count: 1.25;
+    }
+}
+
+p {
+    display: inline;
+    margin: 0;
+}
+
+ul {
+    color: #16a085;
+    margin-top: 0;
+    padding-left: 110px;
+    text-align: left;
+    list-style: none;
+    -webkit-animation-name: change;
+    -webkit-animation-duration: 6s;
+    animation-name: change;
+    animation-duration: 6s;
+}
+
+ul li {
+    line-height: 40px;
+    margin: 0;
+}
+
+@-webkit-keyframes opacity {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes change {
+    0%,
+    12%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+    17%,
+    29% {
+        transform: translate3d(0, -25%, 0);
+    }
+    34%,
+    46% {
+        transform: translate3d(0, -50%, 0);
+    }
+    51%,
+    63% {
+        transform: translate3d(0, -75%, 0);
+    }
+    68%,
+    80% {
+        transform: translate3d(0, -50%, 0);
+    }
+    85%,
+    97% {
+        transform: translate3d(0, -25%, 0);
+    }
+}
+
+@keyframes opacity {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes change {
+    0%,
+    12%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+    17%,
+    29% {
+        transform: translate3d(0, -25%, 0);
+    }
+    34%,
+    46% {
+        transform: translate3d(0, -50%, 0);
+    }
+    51%,
+    63% {
+        transform: translate3d(0, -75%, 0);
+    }
+    68%,
+    80% {
+        transform: translate3d(0, -50%, 0);
+    }
+    85%,
+    97% {
+        transform: translate3d(0, -25%, 0);
+    }
+}
+
+.sub {
+    color: #ecf0f1;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    font-size: 2vw;
+    line-height: 40px;
+    font-family: 'Lato', sans-serif;
+}
+
+.standOut {
+    color: #16a085;
+}
+
+.MidData {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: flex;
+    position: relative;
+    width: 40%;
+    left: 30%;
+    -webkit-transition-delay: 4.5s;
+    /* Safari */
+    transition-delay: 4.5s;
+    &::before,
+    &::after {
+        box-sizing: border-box;
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.slider {
+    width: 40%;
+    left: 30%;
+    position: relative;
+    margin-top:3%;
+}
+
+.infoBox {
+    position: fixed;
+    width: 30%;
+    height: 10%;
+    right: 0;
+    bottom: 0;
+    padding: 2% 3% 0% 3%;
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.github {
+    height: 60%;
+    border: 2px white solid;
+    border-bottom: 0;
+    width: 13%;
+    border-radius: 0px 20px 0 0;
+    bottom: 0;
+    position: relative;
+    align-self: flex-end;
+    margin: 0 2% 0 2%;
+}
+
+.github:hover {
+    border: 2px #D3D3D3 solid;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 980px) {
+    .sub {
+        font-size: 5.2vw;
+        margin-top: 25vmax;
+    }
+    .MidData {
+      width: 90%;
+    left: 5%;
+        margin-top: 0 !important;
+    }
+    .slider {
+        margin-top: 6%;
+        width: 80%;
+        left: 10%;
+        position: relative;
+
+    }
+    .github {
+        height: 70%;
+        border: 2px white solid;
+        border-bottom: 0;
+        width: 40%;
+        margin: 0 6% 0 6%;
+    }
+    .moon {
+        margin-left: 0;
+        visibility: visible;
+        width: 60%;
+        height: 63%;
+        padding: 0;
+        align-items: center;
+        align-self: center;
+    }
+    p{
+        font-size:90%;
+    }
+}
+
+
+.draw {
+    transition: color 0.25s;
+    &::before,
+    &::after {
+        border: 2px solid transparent; // Set border to invisible, so we don't see a 4px border on a 0x0 element before the transition starts
+        width: 0;
+        height: 0;
+    }
+    // This covers the top & right borders (expands right, then down)
+    &::before {
+        top: 0;
+        left: 0;
+    }
+    // And this the bottom & left borders (expands left, then up)
+    &::after {
+        bottom: 0;
+        right: 0;
+    }
+    // &:hover {
+    //     color: $cyan;
+    // }
+    // Hover styles
+    // &::before,
+    // &::after {
+    //     width: 100%;
+    //     height: 100%;
+    // }
+    // &::before {
+    //     border-top-color: $cyan; // Make borders visible
+    //     border-right-color: $cyan;
+    //     transition: width 10.25s ease-out, // Width expands first
+    //     height 10.25s ease-out 0.25s; // And then height
+    // }
+    // &::after {
+    //     border-bottom-color: $cyan; // Make borders visible
+    //     border-left-color: $cyan;
+    //     transition: border-color 0s ease-out 0.5s, // Wait for ::before to finish before showing border
+    //     width 10.25s ease-out 0.5s, // And then exanding width
+    //     height 10.25s ease-out 0.75s; // And finally height
+    // }
+}
+
+.draw1 {
+    &::before,
+    &::after {
+        width: 100%;
+        height: 100%;
+    }
+    &::before {
+        border-top-color: $cyan; // Make borders visible
+        border-right-color: $cyan;
+        transition: width 0.35s ease-out, // Width expands first
+        height 0.35s ease-out 0.35s; // And then height
+    }
+    &::after {
+        border-bottom-color: $cyan; // Make borders visible
+        border-left-color: $cyan;
+        transition: border-color 0s ease-out 0.7s, // Wait for ::before to finish before showing border
+        width 0.35s ease-out 0.7s, // And then exanding width
+        height 0.35s ease-out 1.05s; // And finally height
+    }
+}
+
+.headingStyles {
+    width: 15%;
+    padding: 3% 3% 3% 3%;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.moon {
+    margin-left: 0;
+    visibility: visible;
+}
+
+p{
+    font-family: 'Source Sans Pro', sans-serif;;
+    color:'#2C3338';
 }

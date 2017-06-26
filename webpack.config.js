@@ -9,56 +9,99 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HOST = process.env.HOST || "127.0.0.1";
 const PORT = process.env.PORT || "8888";
 
-loaders.push({ 
-	test: /\.scss$/, 
-	loader: ExtractTextPlugin.extract('style', 'css?sourceMap&localIdentName=[local]___[hash:base64:5]!sass?outputStyle=expanded'),
-	exclude: ['node_modules']
+loaders.push({
+    test: /\.css$/,
+    exclude: /[\/\\]src[\/\\]/,
+    loaders: [
+        'style?sourceMap',
+        'css',
+
+    ]
+});
+// local scss modules
+loaders.push({
+    test: /\.scss$/,
+    exclude: /[\/\\](node_modules|bower_components|public)[\/\\]/,
+    loaders: [
+        'style?sourceMap',
+        'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+        'postcss',
+        'sass'
+    ]
 });
 
+// local css modules
+loaders.push({
+    test: /\.css$/,
+    exclude: /[\/\\](node_modules|bower_components|public)[\/\\]/,
+    loaders: [
+        'style?sourceMap',
+        'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+    ]
+});
+
+loaders.push({
+    test: /\.html$/,
+    loader: 'html',
+})
+
+
+loaders.push({
+    test: /\.css$/,
+    loader: "style-loader!css-loader",
+
+})
+
+loaders.push({
+    test: /\.json$/,
+    loader: 'json',
+})
 module.exports = {
-	entry: [
-		'react-hot-loader/patch',
-		'./src/index.jsx', // your app's entry point
-		'./styles/index.scss'
-	],
-	devtool: process.env.WEBPACK_DEVTOOL || 'eval-source-map',
-	output: {
-		publicPath: '/',
-		path: path.join(__dirname, 'public'),
-		filename: 'bundle.js'
-	},
-	resolve: {
-		extensions: ['', '.js', '.jsx']
-	},
-	module: {
-		loaders
-	},
-	devServer: {
-		contentBase: "./public",
-		// do not print bundle build stats
-		noInfo: true,
-		// enable HMR
-		hot: true,
-		// embed the webpack-dev-server runtime into the bundle
-		inline: true,
-		// serve index.html in place of 404 responses to allow HTML5 history
-		historyApiFallback: true,
-		port: PORT,
-		host: HOST
-	},
-	plugins: [
-		new webpack.NoErrorsPlugin(),
-		new webpack.HotModuleReplacementPlugin(),
-	    new ExtractTextPlugin("style.css", {
-		      allChunks: true
-		}),
-		new DashboardPlugin(),
-		new HtmlWebpackPlugin({
-			template: './src/template.html',
-			files: {
-				css: ['style.css'],
-				js: [ "bundle.js"],
-			}
-		}),
-	]
+    entry: [
+        'react-hot-loader/patch',
+        './src/index.jsx', // your app's entry point
+        './styles/index.scss'
+    ],
+    devtool: process.env.WEBPACK_DEVTOOL || 'eval-source-map',
+    output: {
+        publicPath: '/',
+        path: path.join(__dirname, 'public'),
+        filename: 'bundle.js'
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx', '.json']
+    },
+    module: {
+        loaders,
+
+    },
+    devServer: {
+        contentBase: "./public",
+        // do not print bundle build stats
+        noInfo: true,
+        // enable HMR
+        hot: true,
+        // embed the webpack-dev-server runtime into the bundle
+        inline: true,
+        // serve index.html in place of 404 responses to allow HTML5 history
+        historyApiFallback: true,
+        port: PORT,
+        host: HOST
+    },
+
+    plugins: [
+        new webpack.NoErrorsPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new ExtractTextPlugin("style.css", {
+            allChunks: true
+        }),
+        new DashboardPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/template.html',
+            files: {
+                css: ['style.css'],
+                js: ["bundle.js"],
+            }
+        }),
+    ]
 };

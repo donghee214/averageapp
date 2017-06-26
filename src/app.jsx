@@ -1,12 +1,20 @@
 import React from 'react';
+import Background from'./landing.jsx';
+import Center from './center.jsx';
+import Info from './info.jsx'
 
 export default class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>It Works!</h1>
-        <p>This React project just works including <span className="redBg">module</span> local styles.</p>
-        <p>Enjoy!</p>
+      <div style={{
+        height: "100%",
+        width: "100%",
+        position: 'absolute',
+        top: 0
+      }}>
+        <Background />
+        <Center />
+        <Info />
       </div>
     )
   }
